@@ -11,7 +11,8 @@ composeBom = "2024.09.00"
 
 room = "2.6.1"      # Latest stable Room version
 lifecycle = "2.7.0" # Latest stable Lifecycle version
-coroutines = "1.8.0"  # Latest stable Coroutines version
+coroutines = "1.8.0"
+roomCompiler = "2.7.2"  # Latest stable Coroutines version
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -41,6 +42,7 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 # Coroutines
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 
 
 [plugins]
