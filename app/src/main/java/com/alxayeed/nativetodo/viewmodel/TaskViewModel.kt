@@ -4,42 +4,45 @@ import TaskEntity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alxayeed.nativetodo.repository.TaskRepository
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
+import com.alxayeed.nativetodo.util.UiState
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
 
-    // Internal mutable state
-    private val _taskList = MutableStateFlow<List<TaskEntity>>(emptyList())
+    private val _taskListState = MutableStateFlow<UiState<List<TaskEntity>>>(UiState.Loading)
+    val taskListState: StateFlow<UiState<List<TaskEntity>>> = _taskListState
 
-    // External immutable state
-    val taskList: StateFlow<List<TaskEntity>> = _taskList.asStateFlow()
-
-    init {
-        observeTasks()
-    }
-
-    private fun observeTasks() {
+    fun loadTasks() {
         viewModelScope.launch {
-            repository.getAllTasks().collectLatest { tasks ->
-                _taskList.value = tasks
-            }
+            repository.getAllTasks()
+                .onStart { _taskListState.value = UiState.Loading }
+                .catch { e -> _taskListState.value = UiState.Error(e.message ?: "Unexpected error") }
+                .collect { tasks ->
+                    _taskListState.value = if (tasks.isEmpty()) UiState.Empty else UiState.Success(tasks)
+                }
         }
     }
 
-    fun insertTask(task: TaskEntity) = viewModelScope.launch {
-        repository.insertTask(task)
+    fun insertTask(task: TaskEntity) {
+        viewModelScope.launch {
+            repository.insertTask(task)
+            loadTasks()
+        }
     }
 
-    fun updateTask(task: TaskEntity) = viewModelScope.launch {
-        repository.updateTask(task)
+    fun updateTask(task: TaskEntity) {
+        viewModelScope.launch {
+            repository.updateTask(task)
+            loadTasks()
+        }
     }
 
-    fun deleteTask(task: TaskEntity) = viewModelScope.launch {
-        repository.deleteTask(task)
+    fun deleteTask(task: TaskEntity) {
+        viewModelScope.launch {
+            repository.deleteTask(task)
+            loadTasks()
+        }
     }
 
     suspend fun getTaskById(id: Int): TaskEntity? {
