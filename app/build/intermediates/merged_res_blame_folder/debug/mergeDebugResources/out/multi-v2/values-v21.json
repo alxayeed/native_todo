@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.alxayeed.nativetodo.app-mergeDebugResources-45:/values-v21/values-v21.xml",
+            "outputFile": "com.alxayeed.nativetodo.app-mergeDebugResources-52:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "/home/al/.gradle/caches/8.13/transforms/8bdc9cc6720a5de6f23a792e290a49d7/transformed/core-1.16.0/res/values-v21/values-v21.xml",
+                    "source": "/home/al/.gradle/caches/8.13/transforms/0b0bb01bfd5943b46531210d557eda5f/transformed/core-1.16.0/res/values-v21/values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

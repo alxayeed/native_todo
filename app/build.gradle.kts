@@ -4,6 +4,19 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+configurations.all {
+    resolutionStrategy {
+        force("org.jetbrains:annotations:23.0.0")
+        // Optional: exclude older conflicting version completely
+        eachDependency {
+            if (requested.group == "com.intellij" && requested.name == "annotations") {
+                useTarget("org.jetbrains:annotations:23.0.0")
+                because("Resolve duplicate annotation classes from JetBrains and IntelliJ")
+            }
+        }
+    }
+}
+
 android {
     namespace = "com.alxayeed.nativetodo"
     compileSdk = 36
