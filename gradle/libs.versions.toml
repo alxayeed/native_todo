@@ -12,10 +12,13 @@ composeBom = "2024.09.00"
 room = "2.6.1"      # Latest stable Room version
 lifecycle = "2.7.0" # Latest stable Lifecycle version
 coroutines = "1.8.0"
-roomCompiler = "2.7.2"  # Latest stable Coroutines version
+roomCompiler = "2.7.2"
+material3Jvmstubs = "1.4.0-alpha17"  # Latest stable Coroutines version
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-material3-icons-core = { module = "androidx.compose.material3:material3-icons-core" }
+androidx-material3-icons-filled = { module = "androidx.compose.material3:material3-icons-filled" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -43,6 +46,7 @@ androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecy
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
+androidx-material3-jvmstubs = { group = "androidx.compose.material3", name = "material3-jvmstubs", version.ref = "material3Jvmstubs" }
 
 
 [plugins]
